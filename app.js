@@ -1,17 +1,15 @@
 // El principal objetivo de este desafío es fortalecer tus habilidades en lógica de programación. Aquí deberás desarrollar la lógica para resolver el problema.
 let nombresAmigos = [];
+let listaSorteo = [];
 let i = 0;
 
 
 function agregarAmigo(){
-
     let nuevoNombre = document.querySelector('input').value;
     nuevoNombre ? nombresAmigos.push(nuevoNombre) : alert("debes escribir un nombre");
     document.querySelector('input').value = "";
-    tablaNombres()
-    console.log(nombresAmigos)
-    
-    
+    tablaNombres();
+    console.log(nombresAmigos)    
 }
 
 
@@ -42,11 +40,12 @@ function sortearAmigo(){
     agregarResultado.textContent = nombresAmigos[elegido];
     resultado.appendChild(agregarResultado);
 
+    listaSorteo.push(agregarResultado.textContent);
+
+
     } else{
-
         alert("para realizar un sorteo debe agregar nombres a la lista");
-        
-
     }
 
 }
+
