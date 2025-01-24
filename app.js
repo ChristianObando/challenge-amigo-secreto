@@ -9,9 +9,7 @@ function agregarAmigo(){
     nuevoNombre ? nombresAmigos.push(nuevoNombre) : alert("debes escribir un nombre");
     document.querySelector('input').value = "";
     tablaNombres();
-    console.log(nombresAmigos)    
 }
-
 
 function tablaNombres(){
     let tabla = document.getElementById('listaAmigos');
@@ -26,26 +24,35 @@ function tablaNombres(){
     }
 }
 
-function sortearAmigo(){
-
-    if(nombresAmigos.length > 0){      
-
-    let elegido = Math.floor(Math.random () * nombresAmigos.length );
-    console.log(nombresAmigos[elegido]);
-    
-    let resultado = document.getElementById('resultado');
-    resultado.innerHTML = "";
-
-    let agregarResultado = document.createElement('li');
-    agregarResultado.textContent = nombresAmigos[elegido];
-    resultado.appendChild(agregarResultado);
-
-    listaSorteo.push(agregarResultado.textContent);
-
-
-    } else{
-        alert("para realizar un sorteo debe agregar nombres a la lista");
+function deshabilitarBoton(){
+    estadoBoton = document.querySelector('.button-draw'); 
+    if (nombresAmigos.length === listaSorteo.length) {
+        alert("sorteo Finalizado");   
+        estadoBoton.disabled = true            
     }
+}
 
+function sortearAmigo(){        
+
+    if(nombresAmigos.length > 0){
+
+        let elegido = Math.floor(Math.random () * nombresAmigos.length ); // genera el nuemro aleatorio para elegir nombre
+
+            if(listaSorteo.includes(elegido)){
+                return sortearAmigo();
+            }else{
+                let resultado = document.getElementById('resultado');
+                resultado.innerHTML = "";
+
+                let agregarResultado = document.createElement('li');
+                agregarResultado.textContent = nombresAmigos[elegido];
+                resultado.appendChild(agregarResultado);
+                
+                listaSorteo.push(elegido);
+                deshabilitarBoton();        
+            }
+    }else{
+        alert("debe registrar almenos 1 nombre para realizar el sorteo")       
+    }
 }
 
