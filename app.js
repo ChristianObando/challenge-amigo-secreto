@@ -2,6 +2,11 @@ let arrayNombres = []
 let arrayResultados = []
 
 // alimnetar el array:
+document.addEventListener("keydown",function(event){
+    if(event.key === 'Enter'){
+        agregarAmigo()
+    }
+})
 function agregarAmigo(){
     let nombre = document.getElementById('amigo').value;
     arrayNombres.push (nombre);
